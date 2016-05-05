@@ -100,6 +100,10 @@ static int l_deepactivelines(lua_State *L) {
 }
 
 int luaopen_deepactivelines(lua_State *L) {
+    lua_newtable(L);
+    lua_pushliteral(L, "0.1.0");
+    lua_setfield(L, -2, "version");
     lua_pushcfunction(L, l_deepactivelines);
+    lua_setfield(L, -2, "get");
     return 1;
 }
