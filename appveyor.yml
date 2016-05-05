@@ -1,0 +1,19 @@
+shallow_clone: true
+
+environment:
+  matrix:
+  - LUA: "lua 5.1"
+  - LUA: "lua 5.2"
+  - LUA: "lua 5.3"
+  - LUA: "luajit 2.0"
+  - LUA: "luajit 2.1"
+
+install:
+  - set PATH=%CD%\env\bin;C:\Python27\Scripts;%PATH%
+  - pip install hererocks
+  - hererocks env --%LUA% -rlatest
+  - luarocks install busted
+  - luarocks make
+
+test_script:
+  - busted
